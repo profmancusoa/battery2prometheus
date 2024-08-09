@@ -1,4 +1,4 @@
-module github.com/jiajunhuang/battery_exporter
+module github.com/profmancusoa/battery2prometheus
 
 go 1.13
 

@@ -38,10 +38,15 @@ var (
 		Name: "battery_cycle_count",
 		Help: "Battery Charge Cycle Count",
 	})
+	batteryCapacity = prometheus.NewGauge(prometheus.GaugeOpts{
+		Name: "battery_capacity_percentage",
+		Help: "Battery Capacity",
+	})
 	MetricsMap = map[string]prometheus.Gauge{
 		"energy_now":         energyNow,
 		"energy_full":        energyFull,
 		"energy_full_design": energyFullDesign,
+		"capacity":           batteryCapacity,
 	}
 )
 
@@ -51,6 +56,7 @@ func init() {
 	prometheus.MustRegister(energyFull)
 	prometheus.MustRegister(energyFullDesign)
 	prometheus.MustRegister(cycleCount)
+	prometheus.MustRegister(batteryCapacity)
 }
 
 func readValue(path string) (float64, error) {
